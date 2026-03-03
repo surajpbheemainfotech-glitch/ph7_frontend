@@ -6,8 +6,8 @@ import CountdownTimer from "./Wheel-Helper/CountdownTimer";
 import PayModal from "./Wheel-Helper/PayModel";
 import WinPopup from "./Wheel-Helper/WinPopup";
 import Confetti from "./Wheel-Helper/Confetti";
-import ScratchCard from "../Scratch/ScratchCard.jsx";
-import SlotMachine from "../Slots/Slotmachine.jsx";
+import ScratchCard from "../Scratch/ScratchCard";
+import SlotMachine from "../Slots/SlotMachine";
 import {
   SLICES,
   TOTAL,
