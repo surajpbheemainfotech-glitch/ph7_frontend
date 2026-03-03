@@ -46,9 +46,11 @@ export const AuthProvider = ({ children }) => {
       setWallet(next);
       localStorage.setItem("wallet", JSON.stringify(next));
     }
+   
   };
 
   const register = (userData, walletData) => login(userData, walletData);
+  
 
   const logout = () => {
     setUser(null);

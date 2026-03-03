@@ -199,7 +199,7 @@ function PoolsTable({ onAddClick }) {
                   <td className="px-4 py-3 text-right space-x-2">
                     <button
                       onClick={() => handleEdit(t)}
-                      className="px-3 py-2 rounded-lg text-xs font-semibold border border-blue-200 text-blue-600 hover:bg-blue-50 transition"
+                      className="px-3 py-2 rounded-lg text-xs mb-2 font-semibold border border-blue-200 text-blue-600 hover:bg-blue-50 transition"
                     >
                       Edit
                     </button>

@@ -96,6 +96,8 @@ const WalletDropdown = ({ formatINR }) => {
 
             {/* ✅ bottom buttons: Withdraw + Add Money (no Close here) */}
             <div className="relative px-5 py-4 border-t border-gray-100 flex gap-3 bg-white">
+            
+                {import.meta.env.VITE_FLAG_V === "V1" && (
               <button
                 onClick={() => {
                   setOpen(false);
@@ -106,6 +108,8 @@ const WalletDropdown = ({ formatINR }) => {
               >
                 Withdraw
               </button>
+            )}
+              
 
               <button
   type="button"
@@ -144,7 +148,11 @@ const WalletDropdown = ({ formatINR }) => {
       />
 
       {/* ✅ Withdraw Modal */}
-      <WithDrawl open={withdrawOpen} onClose={() => setWithdrawOpen(false)} />
+        {import.meta.env.VITE_FLAG_V === "V1" && (
+              <WithDrawl open={withdrawOpen} onClose={() => setWithdrawOpen(false)} />
+            )}
+      
+     
     </>
   );
 };

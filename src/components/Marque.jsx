@@ -1,15 +1,25 @@
 import React, { useEffect, useMemo, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 
+/* 🔹 Static fallback winners */
+const STATIC_WINNERS = [
+  { brand: "Rahul Sharma", amount: 5000, position: 1 },
+  { brand: "Priya Verma", amount: 3000, position: 2 },
+  { brand: "Amit Kumar", amount: 2000, position: 3 },
+];
+
 export default function Marque({
   title = "Recent Winners",
   speed = 28,
-  poolTitle = "megaWinner", // 👈 jis pool ka result chahiye
+  poolTitle = "megaWinner",
 }) {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(STATIC_WINNERS);
 
   useEffect(() => {
-    if (!poolTitle) return;
+    if (!poolTitle) {
+      setItems(STATIC_WINNERS);
+      return;
+    }
 
     const fetchWinners = async () => {
       try {
@@ -25,10 +35,15 @@ export default function Marque({
           position: w.position,
         }));
 
-        setItems(mapped);
+        if (mapped.length > 0) {
+          setItems(mapped);
+        } else {
+          setItems(STATIC_WINNERS);
+        }
+
       } catch (err) {
         console.error("MARQUEE API ERROR:", err?.response || err);
-        setItems([]);
+        setItems(STATIC_WINNERS);
       }
     };
 
@@ -36,8 +51,6 @@ export default function Marque({
   }, [poolTitle]);
 
   const loop = useMemo(() => [...items, ...items], [items]);
-
-  if (!items.length) return null;
 
   return (
     <div className="w-full border-y border-slate-200 bg-gradient-to-r from-emerald-50 via-white to-emerald-50">
@@ -56,14 +69,13 @@ export default function Marque({
       `}</style>
 
       <div className="marquee flex items-center overflow-hidden">
-        {/* Left label */}
+        {/* Left Label */}
         <div className="shrink-0 px-5 py-3 font-extrabold text-emerald-700 bg-white/80 backdrop-blur-md border-r border-emerald-200 tracking-wide">
           🏆 {title}
         </div>
 
-        {/* Right scrolling area */}
+        {/* Scrolling Area */}
         <div className="relative flex-1 overflow-hidden">
-          {/* fade edges */}
           <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-emerald-50 to-transparent z-10" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-emerald-50 to-transparent z-10" />
 
@@ -80,6 +92,7 @@ export default function Marque({
   );
 }
 
+/* 🔹 Winner Card */
 function Winner({ brand, amount, position }) {
   const initials = (brand || "U")
     .split(" ")
@@ -98,12 +111,13 @@ function Winner({ brand, amount, position }) {
   return (
     <div className="px-3 py-3">
       <div className="flex items-center gap-4 rounded-full bg-white/80 backdrop-blur-md border border-emerald-200 shadow-md hover:shadow-lg transition-shadow px-5 py-3">
-        {/* icon */}
+        
+        {/* Avatar */}
         <div className="h-9 w-9 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 text-white grid place-items-center text-sm font-extrabold shadow">
           {initials}
         </div>
 
-        {/* text */}
+        {/* Text */}
         <div className="whitespace-nowrap leading-tight">
           <div className="font-semibold text-slate-800 text-sm">
             {brand}
@@ -113,7 +127,7 @@ function Winner({ brand, amount, position }) {
           </div>
         </div>
 
-        {/* badge */}
+        {/* Position Badge */}
         <span
           className={`ml-2 text-[10px] font-bold text-white px-2 py-1 rounded-full ${badgeColor}`}
         >

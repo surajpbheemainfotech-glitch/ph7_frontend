@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://10.36.147.145:3000/api",
+  baseURL: "https://ph7lootlotterybackend-v1-production.up.railway.app/api",
   withCredentials: true,
   headers: {
     Accept: "application/json",

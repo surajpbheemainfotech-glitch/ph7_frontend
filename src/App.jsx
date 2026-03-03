@@ -21,11 +21,15 @@ import PlayNow from "./components/PlayNow";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./context/AuthContext";
 import Packages from "./pages/admin/Packages";
+import Dashboard from "./pages/admin/Dashboard";
 import PackagePayment from "./pages/PackagePayment";
 import UserProfile from "./components/UserProfiles/UserProfile";
 import AdminProfile from "./pages/admin/AdminProfile";
+import { Toaster } from "react-hot-toast";
 
 import UserRoute from "./routes/UserRoute"; 
+import WithDrawl from "./components/UserProfiles/WithDrawl";
+import WithdrawlBox from "./pages/admin/withdrawSection/WithdrawlBox.jsx";
 
 /* ---------------- Layout ---------------- */
 const Layout = () => {
@@ -86,6 +90,7 @@ const Layout = () => {
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="pools" element={<Tickets />} />
           <Route path="packages" element={<Packages />} />
+          <Route path="withdrawl" element={<WithdrawlBox />} />
           <Route path="adminprofile" element={<AdminProfile />} />
         </Route>
       </Routes>
@@ -99,6 +104,7 @@ const Layout = () => {
 const App = () => (
   <BrowserRouter>
     <AuthProvider>
+        <Toaster position="top-center" reverseOrder={false} />
       <Layout />
     </AuthProvider>
   </BrowserRouter>

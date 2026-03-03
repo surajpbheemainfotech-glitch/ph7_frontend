@@ -31,7 +31,7 @@ function PackageTable() {
       setError("");
 
       const token = localStorage.getItem("admin_token");
-      console.log(token)
+  
       const res = await axiosInstance.get("/package", {
         headers: { Authorization: `Bearer ${token}` },
    

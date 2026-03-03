@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FiMenu, FiX, FiUser, FiLogOut } from "react-icons/fi";
 import WalletDropdown from "./WalletDropdown";
+import logoImg from '../assets/images/logo.png'
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -115,14 +116,15 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-200">
       <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-8">
-        <div className="h-16 sm:h-[70px] flex items-center justify-between gap-3">
+        <div className="h-20 sm:h-[70px] flex items-center justify-between gap-3">
           {/* LOGO */}
           <button
             type="button"
             onClick={() => navigate("/")}
-            className="text-xl sm:text-2xl font-extrabold tracking-tight"
+            className="text-2xl sm:text-2xl font-extrabold tracking-tight"
           >
-            pH7<span className="text-teal-400">Loot</span>
+
+            <img src={logoImg} alt="logo" className="h-12" />
           </button>
 
           {/* DESKTOP RIGHT */}
